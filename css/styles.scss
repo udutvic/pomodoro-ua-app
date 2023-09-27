@@ -1,0 +1,488 @@
+$color-light-blue: rgba(215, 224, 255, 0.4);
+$color-light-blue-2: rgb(215, 224, 255);
+$color-dark-blue: rgb(30, 33, 63);
+$color-dark-blue-2: rgb(22, 25, 50);
+$color-white: rgb(255, 255, 255);
+$color-light-grey: rgb(239, 241, 250);
+$color-red: rgba(248, 112, 112);
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(
+    -45deg,
+    rgb(235, 235, 24) 50%,
+    rgb(235, 235, 24),
+    rgb(9, 143, 246) 50%,
+    rgb(9, 143, 246)
+  );
+  backdrop-filter: blur(20px);
+  background-repeat: no-repeat;
+  font-family: "Roboto Slab", serif;
+  height: 100vh;
+  width: 100vw;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0;
+  height: 100vh;
+}
+
+button {
+  transition: all 0.3s linear;
+}
+
+.ring.ending {
+  stroke: #900a0a;
+}
+
+.timer__main-minutes > input[type="number"],
+.timer__main-seconds > input[type="number"] {
+  border: none;
+  background: inherit;
+  color: white;
+  font-weight: 700;
+  font-size: 100px;
+  width: 150px;
+  text-align: center;
+  outline: none;
+  pointer-events: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.trizub {
+  position: absolute;
+  height: 85%;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+svg path {
+  transition: all 0.3s linear;
+}
+
+.hidden {
+  display: none;
+}
+
+.timer {
+  // .timer__container
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  // .timer__logo
+
+  &__logo {
+    display: block;
+    margin-bottom: 55px;
+  }
+
+  // .timer__switch
+  &__switch {
+    display: flex;
+    gap: 18px;
+    width: 420px;
+    height: 64px;
+    border-radius: 31.5px;
+    background-color: #cece09;
+    padding: 8px 7px;
+    margin-bottom: 45px;
+    position: relative;
+    z-index: 10;
+
+    // .timer__switch-btn
+    &-btn {
+      cursor: pointer;
+      width: 124px;
+      height: 48px;
+      border-radius: 26.5px;
+      border: none;
+      background-color: transparent;
+      font-size: 14px;
+      font-weight: 700;
+      color: #087ec6;
+    }
+
+    &-btn:hover {
+      color: #3499d7;
+    }
+
+    &-btn.active {
+      background-color: #087ec6;
+      color: #cece09;
+    }
+  }
+
+  // .timer__main
+
+  &__main {
+    width: 410px;
+    height: 410px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(50deg, #087ec6 50%, #cece09 50%);
+    background-repeat: no-repeat;
+    box-shadow: 50px 50px 100px 0px #0a3bcd, -50px -50px 100px 0px #c3df0a;
+    margin-bottom: 63px;
+    animation: animate 5s ease-in-out infinite;
+    animation-delay: -2.5s;
+
+    // .timer__main-container
+    &-container {
+      align-items: center;
+      border-radius: 50%;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      height: 366px;
+      justify-content: center;
+      position: relative;
+      width: 366px;
+    }
+
+    // .timer__main-progress
+    &-progress {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    // .timer__main-circle
+    &-circle {
+      --dash-array: 0px;
+      stroke-dasharray: var(--dash-array);
+      stroke: whitesmoke;
+      stroke-width: 10;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center center;
+      transition: stroke-dashoffset 1s linear, stroke 0.8s linear;
+    }
+
+    // .timer__main-clock
+
+    &-clock {
+      display: flex;
+      font-size: 100px;
+      margin: 30px auto;
+      position: relative;
+      // top: 30px;
+    }
+
+    // .timer__main-minutes
+
+    &-minutes {
+    }
+
+    // .timer__main-colon
+
+    &-colon {
+      padding-left: 1px;
+      margin-top: -10px;
+      font-weight: 700;
+      color: white;
+    }
+
+    // .timer__main-seconds
+
+    &-seconds {
+    }
+
+    // .timer__main-time
+    &-time {
+    }
+
+    // .timer__main-start
+    &-start {
+      position: relative;
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 15px;
+      color: white;
+      padding-left: 24px;
+    }
+
+    &-start:hover {
+      color: #f2f207;
+    }
+  }
+
+  // .timer__setting
+  &__setting {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    // .timer__setting-icon
+    &-icon {
+      box-sizing: content-box;
+    }
+
+    // .timer__setting-icon:hover
+    &-icon:hover path {
+      fill: #087ec6;
+    }
+
+    &-icon:hover {
+      animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &__notification {
+    display: none;
+    background-color: $color-white;
+    border-radius: 40px;
+    padding: 24px;
+    position: fixed;
+    bottom: 80px;
+    font-size: 24px;
+    font-weight: 600;
+    max-width: 400px;
+    text-align: center;
+  }
+}
+
+.modal {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 15;
+
+  &-background {
+    background-color: #2e98e8;
+    height: 100%;
+    width: 100%;
+  }
+  // .modal__modal
+  &__modal {
+    border-radius: 25px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;   
+
+    // .modal__modal-header
+    &-header {
+      align-items: center;
+      border-bottom: 1px solid #e3e1e1;
+      display: flex;
+      justify-content: space-between;
+      padding: 34px 39px;
+
+      h3 {
+        color: $color-dark-blue-2;
+        font-family: "Roboto Slab", serif;
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+
+    &-close {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      height: 14px;
+    }
+
+    &-close-icon {
+      box-sizing: content-box;
+    }
+
+    &-close-icon:hover path {
+      fill: $color-dark-blue;
+      opacity: 1;
+    }
+
+    &-form {
+      padding: 24px 39px 2px;
+    }
+
+    &-time {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e3e1e1;
+      margin-bottom: 19px;
+    }
+
+    &-time h4 {
+      color: #161932;
+      font-family: "Roboto Slab", serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      margin-bottom: 22px;
+    }
+
+    &-time > div {
+      display: flex;
+      gap: 20px;
+    }
+
+    &-time > div > div > label {
+      color: #1e213f;
+      font-family: "Roboto Slab", serif;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.4;
+    }
+
+    &-input {
+      margin-top: 8px;
+      width: 140px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding-left: 16px;
+      border-radius: 10px;
+      background: #eff1fa;
+    }
+
+    &-number {
+      width: 90px;
+      border: none;
+      pointer-events: none;
+      background-color: transparent;
+      color: #1e213f;
+      font-family: "Roboto Slab", serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    &-arrow {
+      display: flex;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    &-arrow svg {
+      box-sizing: content-box;
+      padding: 8px;
+    }
+
+    &-arrow svg:hover path {
+      stroke: $color-dark-blue;
+      stroke-opacity: 1;
+    }
+
+    &-btn {
+      width: 140px;
+      height: 53px;
+      border-radius: 26.5px;
+      background: #087ec6;
+      border: none;
+      text-align: center;
+      font-family: "Roboto Slab", serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: $color-white;
+      cursor: pointer;
+      position: relative;
+      left: 50%;
+      margin-left: -70px;
+      top: 25px;
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .timer__main-minutes > input[type="number"],
+  .timer__main-seconds > input[type="number"] {
+    font-size: 80px;
+    width: 100px;
+  }
+  .timer {
+    &__logo {
+      width: 117px;
+      margin-bottom: 45px;
+    }
+    &__switch {
+      width: 327px;
+      gap: 12px;
+      &-btn {
+        width: 105px;
+        font-size: 12px;
+      }
+    }
+    &__main {
+      width: 300px;
+      height: 300px;
+    }
+
+    &__main-container {
+      width: 268px;
+      height: 268px;
+    }
+
+    &__main-clock {
+      font-size: 80px;
+      margin: 20px auto;
+    }
+
+    &__main-circle {
+      --dash-array: 0px;
+      stroke-dasharray: var(--dash-array);
+    }
+  }
+
+  .modal__modal {
+    width: 327px;
+    &-time > div {
+      flex-direction: column;
+    }
+
+    &-time > div > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-header {
+      padding: 34px 25px;
+    }
+
+    &-form {
+      padding: 24px 25px 2px;
+    }
+  }
+}
